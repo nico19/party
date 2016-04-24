@@ -71,9 +71,45 @@ class OrderController extends Controller
 		{
 			$model->attributes=$_POST['OrderForm'];
 			if($model->validate()){
-				exit('ok');
+				$personM = new Person();
+				$personW = new Person();
+				$order = new Order();
+
+				$personM->idcode = $model->idcode_m;
+				$personM->pipd = $model->pipd_m;
+				$personM->pipp = $model->pipp_m;
+				$personM->place_birth = $model->place_birth_m;
+				$personM->place_home = $model->place_home_m;
+				$personM->number_passport = $model->number_passport_m;
+				$personM->who_gave = $model->who_gave_m;
+				$personM->date = $model->date_gave_m;
+				$personM->marital_status = $model->marital_status_m;
+
+				$personW->idcode = $model->idcode_w;
+				$personW->pipd = $model->pipd_w;
+				$personW->pipp = $model->pipp_w;
+				$personW->place_birth = $model->place_birth_w;
+				$personW->place_home = $model->place_home_w;
+				$personW->number_passport = $model->number_passport_w;
+				$personW->who_gave = $model->who_gave_w;
+				$personW->date = $model->date_gave_w;
+				$personW->marital_status = $model->marital_status_w;
+
+				$personM->save();
+
+				$personW->save();
+				
+				$order->personm_id = $personM->id;
+				$order->personw_id = $personW->id;
+				$order->date = $model->data_registration;
+				$order->ceremony = $model->ceremony;
+				$order->organDRATC_id = 1;
+				$order->user_id = Yii::app()->user->getId();
+				$order->save();
+
+				//exit('ok');
 			}
-				//$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(

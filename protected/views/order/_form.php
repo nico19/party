@@ -11,8 +11,8 @@
 
 <script>
 	$(function() {
-		$( ".datepicker" ).datepicker({dateFormat: 'dd-mm-yy' });
-		$( ".datepickerTime" ).datepicker({dateFormat: 'dd-mm-yy', showTime:true });
+		$( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd' });
+		$( ".datepickerTime" ).datepicker({dateFormat: 'yy-mm-dd', showTime:true });
 	});
 </script>
 <div class="form">
