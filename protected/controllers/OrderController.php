@@ -107,7 +107,7 @@ class OrderController extends Controller
 				$order->user_id = Yii::app()->user->getId();
 				$order->save();
 
-				//exit('ok');
+				$this->redirect($this->createUrl('order/index'));
 			}
 				$this->redirect(array('view','id'=>$model->id));
 		}

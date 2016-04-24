@@ -45,6 +45,8 @@ $this->breadcrumbs=array(
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
+	<a href="<?=$this->createUrl('site/reg')?>">Reg</a>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
