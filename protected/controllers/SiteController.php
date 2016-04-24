@@ -99,11 +99,51 @@ class SiteController extends Controller
 	}
 
 	/**
+	 * Displays the login page
+	 */
+	public function actionReg()
+	{
+		$model=new RegForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='reg-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['RegForm']))
+		{
+			$model->attributes=$_POST['RegForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate()){
+				$user = new User();
+				$user->username = $model->username;
+				$user->email = $model->email;
+				$user->password = CPasswordHelper::hashPassword($model->password);
+				$user->save();
+				$this->login($user->username, $model->password);
+				
+				$this->redirect($this->createUrl('site/index'));
+			}
+		}
+		// display the login form
+		$this->render('reg',array('model'=>$model));
+	}
+
+	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	private function login($username, $password){
+		$identity = new UserIdentity($username, $password);
+		$identity->authenticate();
+		Yii::app()->user->login($identity);
 	}
 }
