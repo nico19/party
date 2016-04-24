@@ -62,7 +62,7 @@ class OrderController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Order;
+		$model=new OrderForm;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -70,8 +70,10 @@ class OrderController extends Controller
 		if(isset($_POST['Order']))
 		{
 			$model->attributes=$_POST['Order'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->validate()){
+				exit('ok');
+			}
+				//$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
