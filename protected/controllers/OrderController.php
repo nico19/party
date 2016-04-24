@@ -67,9 +67,9 @@ class OrderController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Order']))
+		if(isset($_POST['OrderForm']))
 		{
-			$model->attributes=$_POST['Order'];
+			$model->attributes=$_POST['OrderForm'];
 			if($model->validate()){
 				exit('ok');
 			}

@@ -50,5 +50,17 @@ class OrderForm extends CFormModel
             array('idcode_m, idcode_w', 'length', 'max' => 10, 'min' => 10),
         );
     }
+    public function attributeLabels()
+    {
+        return array(
+            'pipd_m' => '',
+            'user_id' => 'User',
+            'personm_id' => 'Personm',
+            'personw_id' => 'Personw',
+            'organDRATC_id' => 'Organ Dratc',
+            'date' => 'Date',
+            'ceremony' => 'Ceremony',
+        );
+    }
 }
 
