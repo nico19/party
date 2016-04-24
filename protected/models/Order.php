@@ -8,7 +8,7 @@
  * @property string $user_id
  * @property string $personm_id
  * @property string $personw_id
- * @property string $organDRATC_id
+ * @property string $organDRATC_id new
  * @property string $date
  * @property integer $ceremony
  *
